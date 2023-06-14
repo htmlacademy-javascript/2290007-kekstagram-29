@@ -14,12 +14,8 @@ checkLengthString('Второе задание по JS', 20);
 
 // Объявление функции для проверки, является ли строка палиндромом:
 
-const checkStringPalindrome = (palindrome) => {
-  if (palindrome.toLowerCase() === palindrome.toLowerCase().split('').reverse().join('')) {
-    return true;
-  } else {
-    return false;
-  }
+const checkStringPalindrome = function (palindrome) {
+  return palindrome.toLowerCase() === palindrome.toLowerCase().split('').reverse().join('');
 };
 
 // Вызов функции для проверки, является ли строка палиндромом:
