@@ -56,7 +56,7 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 // Функция для описания фотографии, опубликованной пользователем:
 
 const describePhotoPostedByUser = () => ({
-  id: '',
+  id: getRandomArrayElement(identifiers),
   avatar: `img/avatar-${ getRandomArrayElement(avatars) }.svg`,
   description: getRandomArrayElement(descriptions),
   likes: getRandomArrayElement(likes),
@@ -68,5 +68,5 @@ const describePhotoPostedByUser = () => ({
 // const similarPhotoPostedByUser = Array.from({length: 25}, describePhotoPostedByUser);
 // console.log(similarPhotoPostedByUser);
 
-console.log(describePhotoPostedByUser());
-// describePhotoPostedByUser();
+// console.log(describePhotoPostedByUser());
+describePhotoPostedByUser();
