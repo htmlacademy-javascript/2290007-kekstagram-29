@@ -1,4 +1,7 @@
-// const identifiers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+const identifiers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+// for (let i = 0; i < identifiers.length; i++) {
+//   identifiers[i];
+// }
 
 const avatars = [
   1,
@@ -8,6 +11,13 @@ const avatars = [
   5,
   6
 ];
+
+const descriptions = ['кекс', 'пора домой', 'очень вкусно', 'свободно пархает', 'прохладненько', 'поехали'];
+
+const likes = {
+  min: 15,
+  max: 200
+};
 
 const messages = [
   'Всё отлично!',
@@ -48,12 +58,15 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 const describePhotoPostedByUser = () => ({
   id: '',
   avatar: `img/avatar-${ getRandomArrayElement(avatars) }.svg`,
+  description: getRandomArrayElement(descriptions),
+  likes: getRandomArrayElement(likes),
   message: getRandomArrayElement(messages),
-  name: getRandomArrayElement(names),
+  name: getRandomArrayElement(names)
 });
 
 // Установление длинны массива:
 // const similarPhotoPostedByUser = Array.from({length: 25}, describePhotoPostedByUser);
+// console.log(similarPhotoPostedByUser);
 
-// console.log(describePhotoPostedByUser());
-describePhotoPostedByUser();
+console.log(describePhotoPostedByUser());
+// describePhotoPostedByUser();
