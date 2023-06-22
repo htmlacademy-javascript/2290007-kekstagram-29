@@ -1,25 +1,9 @@
-const identifiers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
-// for (let i = 0; i < identifiers.length; i++) {
-//   identifiers[i];
-// }
-
-const avatars = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6
-];
-
-const descriptions = ['кекс', 'пора домой', 'очень вкусно', 'свободно пархает', 'прохладненько', 'поехали'];
-
-const likes = {
-  min: 15,
-  max: 200
-};
-
-const messages = [
+const PICTURE_COUNT = 25;
+const AVATAR_COUNT = 6;
+const LIKE_MIN_COUNT = 15;
+const LIKE_MAX_COUNT = 200;
+const COMMENT_COUNT = 30;
+const COMMENT_LINES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -27,8 +11,8 @@ const messages = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-
-const names = [
+const DESCRIPTIONS = ['кекс', 'пора домой', 'очень вкусно', 'свободно пархает', 'прохладненько', 'поехали'];
+const NAMES = [
   'Юрий',
   'Ксения',
   'Константин',
@@ -41,8 +25,7 @@ const names = [
   'Валентина'
 ];
 
-// Функция для поиска случайного индекса элемента из массива:
-
+// Функция по поиску случайного элемента:
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -53,20 +36,45 @@ const getRandomInteger = (a, b) => {
 // Функция по поиску случайного элемента в переданном массиве:
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-// Функция для описания фотографии, опубликованной пользователем:
+const createIdGenerator = () => {
+  let lastGeneratedId = 0;
+  return () => {
+    lastGeneratedId += 1;
+    return lastGeneratedId;
+  };
+};
 
-const describePhotoPostedByUser = () => ({
-  id: getRandomArrayElement(identifiers),
-  avatar: `img/avatar-${ getRandomArrayElement(avatars) }.svg`,
-  description: getRandomArrayElement(descriptions),
-  likes: getRandomArrayElement(likes),
-  message: getRandomArrayElement(messages),
-  name: getRandomArrayElement(names)
+const generateCommentId = createIdGenerator();
+
+const createMessage = () => Array.from(
+  { length: getRandomInteger (1, 2) },
+  () => getRandomArrayElement(COMMENT_LINES),
+).join(' ');
+
+const createComment = () => ({
+  id: generateCommentId(),
+  avatar: `img/avatar-${ getRandomInteger(1, AVATAR_COUNT) }.svg`,
+  message: createMessage(),
+  name: getRandomArrayElement(NAMES)
 });
 
-// Установление длинны массива:
-// const similarPhotoPostedByUser = Array.from({length: 25}, describePhotoPostedByUser);
-// console.log(similarPhotoPostedByUser);
+// Функция для описания фотографии, опубликованной пользователем:
+const createPicture = (index) => ({
+  id: index,
+  url: `photos/${ index }.jpg`,
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(LIKE_MIN_COUNT, LIKE_MAX_COUNT),
+  comments: Array.from(
+    { length: getRandomInteger (0, COMMENT_COUNT) },
+    createComment,
+  ),
+});
 
-// console.log(describePhotoPostedByUser());
-describePhotoPostedByUser();
+
+const getPictures = () => Array.from(
+  { length: PICTURE_COUNT},
+  (_, pictureIndex) => createPicture(pictureIndex + 1),
+);
+
+getPictures();
+// console.log(getPictures());
