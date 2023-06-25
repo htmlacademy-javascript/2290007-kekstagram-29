@@ -1,4 +1,4 @@
-import {getPictures} from './get-pictures.js';
+import {getPictures} from './data.js';
 
 getPictures();
 // console.log(getPictures());
