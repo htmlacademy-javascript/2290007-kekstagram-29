@@ -1,20 +1,21 @@
-import {getPictures} from './data.js';
+const rendersArrayPictures = (ArrayPictures) => {
+  const picturesContainer = document.querySelector ('.pictures');
 
-const picturesContainer = document.querySelector ('.pictures');
+  const pictureTemplate = document.querySelector('#picture').content
+    .querySelector('.picture');
 
-const pictureTemplate = document.querySelector('#picture').content;
+  const picturesContainerFragment = document.createDocumentFragment();
 
-const similarPictures = getPictures();
+  ArrayPictures.forEach(({url, description, likes, comments}) => {
+    const pictureElement = pictureTemplate.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = url;
+    pictureElement.querySelector('.picture__img').alt = description;
+    pictureElement.querySelector('.picture__likes').textContent = likes;
+    pictureElement.querySelector('.picture__comments').textContent = comments;
+    picturesContainerFragment.appendChild(pictureElement);
+  });
 
-const similarContainerFragment = document.createDocumentFragment();
+  picturesContainer.appendChild(picturesContainerFragment);
+};
 
-similarPictures.forEach(({url, description, likes, comments}) => {
-  const pictureElement = pictureTemplate.cloneNode(true);
-  pictureElement.querySelector('.picture__img').src = url;
-  pictureElement.querySelector('.picture__img').alt = description;
-  pictureElement.querySelector('.picture__likes').textContent = likes;
-  pictureElement.querySelector('.picture__comments').textContent = comments;
-  similarContainerFragment.appendChild(pictureElement);
-});
-
-picturesContainer.appendChild(similarContainerFragment);
+export {rendersArrayPictures};

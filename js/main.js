@@ -1,5 +1,5 @@
 import {getPictures} from './data.js';
-import './miniatures.js';
+import {rendersArrayPictures} from './miniatures.js';
 
 getPictures();
-// console.log(getPictures());
+rendersArrayPictures(getPictures);

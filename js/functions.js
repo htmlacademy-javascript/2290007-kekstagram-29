@@ -33,3 +33,23 @@ const checkPalindrome = function (palindrome) {
 // console.log(checkPalindrome('Лёша на полке клопа нашёл '));
 
 checkPalindrome('ДовОд');
+
+
+// const checkWorkdayTime = (workdayStart, workdayEnd, meetingStart, meetingDuration) => {
+//   const [hourStart, minuteStart] = workdayStart.split(':');
+//   const [hourEnd, minuteEnd] = workdayEnd.split(':');
+//   const [meetingHourStart, meetingMinutesEnd] = meetingStart.split(':');
+
+//   const workdayStartTime = new Date(2023, 0, 1, hourStart, minuteStart);
+//   const workdayEndTime = new Date(2023, 0, 1, hourEnd, minuteEnd);
+//   const meetingStartTime = new Date(2023, 0, 1, meetingHourStart, meetingMinutesEnd);
+//   const sumMeetingStartTimeAndMeetingDuration = meetingStartTime.getMinutes() + meetingDuration;
+//   const resultTime = new Date(2023, 0, 1, meetingStartTime.getHours(), sumMeetingStartTimeAndMeetingDuration);
+
+//   const isMeetingWithinWorkdayTime = meetingStartTime.getHours() < workdayStartTime.getHours() || meetingStartTime.getHours() > workdayEndTime.getHours();
+//   const isMeetingWithinWorkdayTimeMinutes = meetingStartTime.getHours() === workdayEndTime.getHours() && meetingStartTime.getMinutes() >= workdayEndTime.getMinutes();
+//   const isMeetingLongerWorkdayTime = resultTime.getHours() > workdayEndTime.getHours();
+//   const isMeetingLongerWorkdayTimeMinutes = resultTime.getHours() === workdayEndTime.getHours() && resultTime.getMinutes() > workdayEndTime.getMinutes();
+
+//   if (isMeetingWithinWorkdayTime) {
+//     return false;
