@@ -35,21 +35,39 @@ const checkPalindrome = function (palindrome) {
 checkPalindrome('ДовОд');
 
 
-// const checkWorkdayTime = (workdayStart, workdayEnd, meetingStart, meetingDuration) => {
-//   const [hourStart, minuteStart] = workdayStart.split(':');
-//   const [hourEnd, minuteEnd] = workdayEnd.split(':');
-//   const [meetingHourStart, meetingMinutesEnd] = meetingStart.split(':');
+// Функция, которая принимает время начала и конца рабочего дня,
+// а также время старта и продолжительность встречи в минутах и возвращает true,
+// если встреча не выходит за рамки рабочего дня, и false, если выходит:
 
-//   const workdayStartTime = new Date(2023, 0, 1, hourStart, minuteStart);
-//   const workdayEndTime = new Date(2023, 0, 1, hourEnd, minuteEnd);
-//   const meetingStartTime = new Date(2023, 0, 1, meetingHourStart, meetingMinutesEnd);
-//   const sumMeetingStartTimeAndMeetingDuration = meetingStartTime.getMinutes() + meetingDuration;
-//   const resultTime = new Date(2023, 0, 1, meetingStartTime.getHours(), sumMeetingStartTimeAndMeetingDuration);
+const checkWorkdayTime = (workdayStart, workdayEnd, meetingStart, meetingDuration) => {
+  const [hourStart, minuteStart] = workdayStart.split(':');
+  const [hourEnd, minuteEnd] = workdayEnd.split(':');
+  const [meetingHourStart, meetingMinutesEnd] = meetingStart.split(':');
 
-//   const isMeetingWithinWorkdayTime = meetingStartTime.getHours() < workdayStartTime.getHours() || meetingStartTime.getHours() > workdayEndTime.getHours();
-//   const isMeetingWithinWorkdayTimeMinutes = meetingStartTime.getHours() === workdayEndTime.getHours() && meetingStartTime.getMinutes() >= workdayEndTime.getMinutes();
-//   const isMeetingLongerWorkdayTime = resultTime.getHours() > workdayEndTime.getHours();
-//   const isMeetingLongerWorkdayTimeMinutes = resultTime.getHours() === workdayEndTime.getHours() && resultTime.getMinutes() > workdayEndTime.getMinutes();
+  const workdayStartTime = new Date(2023, 0, 1, hourStart, minuteStart);
+  const workdayEndTime = new Date(2023, 0, 1, hourEnd, minuteEnd);
+  const meetingStartTime = new Date(2023, 0, 1, meetingHourStart, meetingMinutesEnd);
+  const sumMeetingStartTimeAndMeetingDuration = meetingStartTime.getMinutes() + meetingDuration;
+  const resultTime = new Date(2023, 0, 1, meetingStartTime.getHours(), sumMeetingStartTimeAndMeetingDuration);
 
-//   if (isMeetingWithinWorkdayTime) {
-//     return false;
+  const isMeetingWithinWorkdayTime = meetingStartTime.getHours() < workdayStartTime.getHours() || meetingStartTime.getHours() > workdayEndTime.getHours();
+  const isMeetingWithinWorkdayTimeMinutes = meetingStartTime.getHours() === workdayEndTime.getHours() && meetingStartTime.getMinutes() >= workdayEndTime.getMinutes();
+  const isMeetingLongerWorkdayTime = resultTime.getHours() > workdayEndTime.getHours();
+  const isMeetingLongerWorkdayTimeMinutes = resultTime.getHours() === workdayEndTime.getHours() && resultTime.getMinutes() > workdayEndTime.getMinutes();
+
+  if (isMeetingWithinWorkdayTime) {
+    return false;
+  }
+
+  if (isMeetingWithinWorkdayTimeMinutes) {
+    return false;
+  }
+
+  if (isMeetingLongerWorkdayTime) {
+    return false;
+  }
+
+  return !isMeetingLongerWorkdayTimeMinutes;
+};
+
+checkWorkdayTime('08:00', '17:30', '14:00', 90);
