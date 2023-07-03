@@ -1,4 +1,4 @@
 import {getPictures} from './data.js';
+import {rendersArrayPictures} from './miniatures.js';
 
-getPictures();
-// console.log(getPictures());
+rendersArrayPictures(getPictures());
