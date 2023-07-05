@@ -1,9 +1,10 @@
-import {isEscapeKey, isEnterKey} from './util';
-// import {rendersArrayPictures} from './miniatures';
+import {isEscapeKey} from './util';
 
-const userModalElement = document.querySelector('.picture');
-const userModalOpenElement = document.querySelector('.big-picture');
-const userModalCloseElement = document.querySelector('.big-picture__cancel');
+const picture = document.querySelector('.picture');
+const bigPicture = document.querySelector('.big-picture');
+const bigPictureCancel = document.querySelector('.big-picture__cancel');
+
+// const commentElement = document.querySelector('.social__comment');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -13,55 +14,40 @@ const onDocumentKeydown = (evt) => {
 };
 
 function openUserModal () {
-  userModalElement.classList.remove('hidden');
+  picture.classList.remove('hidden');
 
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
 function closeUserModal () {
-  userModalElement.classList.add('hidden');
+  picture.classList.add('hidden');
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-userModalOpenElement.addEventListener('click', () => {
+bigPicture.addEventListener('click', () => {
   openUserModal();
 });
 
-userModalOpenElement.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    openUserModal();
-  }
-});
-
-userModalCloseElement.addEventListener('click', () => {
+bigPictureCancel.addEventListener('click', () => {
   closeUserModal();
 });
 
-userModalCloseElement.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    closeUserModal();
-  }
-});
+// const rendersComments = (arrayComments) => {
+//   arrayComments.forEach(({avatar, commentatorName, message}) => {
+//     const comment = commentElement.cloneNode(true);
+//     comment.querySelector('.social__picture').src = avatar;
+//     comment.querySelector('.social__picture').alt = commentatorName;
+//     comment.querySelector('.ssocial__text').textContent = message;
+//     return comment;
+//   });
+// };
+
+// const rendersBigPictures = (arrayBigPictures) => {
+//   arrayBigPictures.forEach(({}) => {
+
+//   })
+//   rendersComments();
+// };
 
 export {};
-
-// const rendersMiniatures = (miniatures) => {
-//   const miniaturesContainer = document.querySelector ('.pictures');
-//   const miniatureTemplate = document.querySelector('#picture')
-//     .content.querySelector('.picture');
-
-//   const fragment = document.createDocumentFragment();
-
-//   miniatures.forEach(({url, likes, comments, description}) => {
-//     const pictureElement = miniatureTemplate.cloneNode(true);
-//     pictureElement.querySelector('.big-picture__img').src = url;
-//     pictureElement.querySelector('.likes-count').textContent = likes;
-//     pictureElement.querySelector('.comments-count').textContent = comments.length;
-//     // pictureElement.querySelector('.social__comments'). = ;
-//     pictureElement.querySelector('.social__caption').alt = description;
-//     fragment.appendChild(pictureElement);
-//   });
-
-//   miniaturesContainer.appendChild(fragment);
-// };

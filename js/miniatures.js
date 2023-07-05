@@ -1,4 +1,4 @@
-const rendersArrayPictures = (ArrayPictures) => {
+const rendersArrayPictures = (arrayPictures) => {
   const picturesContainer = document.querySelector ('.pictures');
 
   const pictureTemplate = document.querySelector('#picture')
@@ -6,7 +6,7 @@ const rendersArrayPictures = (ArrayPictures) => {
 
   const picturesContainerFragment = document.createDocumentFragment();
 
-  ArrayPictures.forEach(({url, description, likes, comments}) => {
+  arrayPictures.forEach(({url, description, likes, comments}) => {
     const pictureElement = pictureTemplate.cloneNode(true);
     pictureElement.querySelector('.picture__img').src = url;
     pictureElement.querySelector('.picture__img').alt = description;
