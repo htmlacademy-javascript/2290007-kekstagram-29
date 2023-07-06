@@ -14,7 +14,7 @@ const onDocumentKeydown = (evt) => {
 };
 
 function openUserModal () {
-  picture.classList.remove('hidden');
+  bigPicture.classList.remove('hidden');
 
   document.addEventListener('keydown', onDocumentKeydown);
 }
@@ -25,7 +25,7 @@ function closeUserModal () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-bigPicture.addEventListener('click', () => {
+picture.addEventListener('click', () => {
   openUserModal();
 });
 
