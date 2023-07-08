@@ -1,5 +1,5 @@
 import {rendersArrayPictures} from './miniatures.js';
-import {showBigPicture} from './full_size_miniatures';
+import {showBigPicture} from './full_size_miniatures.js';
 
 const container = document.querySelector('.pictures');
 
