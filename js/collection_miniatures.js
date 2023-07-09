@@ -1,4 +1,4 @@
-import {rendersArrayPictures} from './miniatures.js';
+import {rendersArrayMiniatures} from './miniatures.js';
 import {showBigPicture} from './full_size_miniatures.js';
 
 const container = document.querySelector('.pictures');
@@ -18,7 +18,7 @@ const renderCollection = (pictures) => {
     showBigPicture(picture);
   });
 
-  rendersArrayPictures(pictures);
+  rendersArrayMiniatures(pictures);
 };
 
 export {renderCollection};

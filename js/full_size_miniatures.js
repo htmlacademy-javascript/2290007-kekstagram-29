@@ -12,14 +12,14 @@ const cancelButtonElement = document.querySelector('.big-picture__cancel');
 const commentElement = document.querySelector('#comment').content.querySelector('.social__comment');
 
 let commentsShown = 0;
-const comments = [];
+let comments = [];
 
 const createComment = ({avatar, name, message}) => {
   const comment = commentElement.cloneNode(true);
 
   comment.querySelector('.social__picture').src = avatar;
   comment.querySelector('.social__picture').alt = name;
-  comment.querySelector('.ssocial__text').textContent = message;
+  comment.querySelector('.social__text').textContent = message;
 
   return comment;
 };
@@ -59,10 +59,6 @@ function onDocumentKeydown (evt) {
   }
 }
 
-const onCangelButtonClick = () => {
-  hideBigPicture();
-};
-
 const renderPictureDetails = ({url, likes, description}) => {
   bigPictureElement.querySelector('.big-picture__img img').src = url;
   bigPictureElement.querySelector('.big-picture__img img').alt = description;
@@ -77,10 +73,11 @@ const showBigPicture = (data) => {
   commentCountElement.classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
 
+  comments = data.comments;
   renderPictureDetails(data);
-  renderComments(data.comments);
+  renderComments();
 };
 
-cancelButtonElement.addEventListener('click', onCangelButtonClick);
+cancelButtonElement.addEventListener('click', hideBigPicture);
 
 export {showBigPicture};

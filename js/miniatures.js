@@ -1,4 +1,4 @@
-const rendersArrayPictures = (arrayPictures) => {
+const rendersArrayMiniatures = (arrayPictures) => {
   const picturesContainer = document.querySelector ('.pictures');
 
   const pictureTemplate = document.querySelector('#picture')
@@ -19,7 +19,7 @@ const rendersArrayPictures = (arrayPictures) => {
   picturesContainer.appendChild(picturesContainerFragment);
 };
 
-export {rendersArrayPictures};
+export {rendersArrayMiniatures};
 
 
 // Второй вариант:
