@@ -1,5 +1,5 @@
 const rendersArrayMiniatures = (arrayPictures) => {
-  const picturesContainer = document.querySelector ('.pictures');
+  const picturesContainer = document.querySelector('.pictures');
 
   const pictureTemplate = document.querySelector('#picture')
     .content.querySelector('.picture');
